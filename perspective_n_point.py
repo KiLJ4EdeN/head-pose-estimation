@@ -58,19 +58,15 @@ def cvt_x_to_deg(euler_x):
 
 face_landmark_path = 'shape_predictor_68_face_landmarks.dat'
 predictor = load_landmark_model(model_path=face_landmark_path)
-# video_path = '/run/media/root/Data/E-KYC_POSE/static/images/video1599561278.666116.mp4'
 video_path = 0
 cap = cv2.VideoCapture(video_path)
 ref_ret, ref_frame = cap.read()
-# ref_frame = cv2.rotate(ref_frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
 camera_matrix, dist_coeffs = calibrate_camera(image=ref_frame)
 detector = dlib.get_frontal_face_detector()
 
 while True:
     ret, frame = cap.read()
-    # frame = cv2.rotate(frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
     if ret:
-        # frame = cv2.medianBlur(frame, 5)
         face_rects = detector(frame, 0)
 
         if len(face_rects) > 0:
